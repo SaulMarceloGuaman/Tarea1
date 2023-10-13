@@ -10,7 +10,7 @@ function personaje(texto, id) {
     div.appendChild(h1)
 
     let idPersonaje = document.createTextNode(id)
-    let h2 = document.createElement('h2')
+    let h2 = document.createElement('h1')
     h2.appendChild(idPersonaje)
     div.appendChild(h2)
 
