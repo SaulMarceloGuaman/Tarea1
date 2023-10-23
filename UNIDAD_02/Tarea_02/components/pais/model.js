@@ -6,5 +6,5 @@ const pais_schema = new Schema({
     nombre: String
 }) 
 
-const model = mongoose.model('Pais', pais_schema)
+const model = mongoose.model('pais', pais_schema)
 module.exports = model
