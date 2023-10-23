@@ -2,18 +2,29 @@ var socket = io.connect('http://localhost:3000/', {
     forceNet: true
 });
 
+var empresasPorAsignarList = []
+
 socket.on('mensaje', (data) => console.log(data));
 
 socket.on('notificacion', (message) => {
     alert(message);
 });
 
+function asignar_empresa() {
+    let empresaSelect = document.getElementById('empresaSelect');
+    let selectedOptions = [...empresaSelect.selectedOptions];
+    let empresaId = selectedOptions.map(option => option.value);
+    empresasPorAsignarList.push('id: '+empresaId)
+    empresasPorAsignarList.forEach(x => console.log("Empresa Seleccionada: " + x))
+    console.log('tamanio lista: '+empresasPorAsignarList.length)
+}
 
 function guardar() {
     let empresaSelect = document.getElementById('empresaSelect');
     let selectedOptions = [...empresaSelect.selectedOptions]; // Obtener opciones seleccionadas
 
     let empresaId = selectedOptions.map(option => option.value);
+    console.log('empresaId; '+empresaId)
     let ruc_ = document.getElementById('ruc').value;
     let cedula_ = document.getElementById('cedula').value;
     let nombre_ = document.getElementById('nombre').value;
@@ -23,7 +34,8 @@ function guardar() {
     let telefono_ = document.getElementById('telefono').value;
 
     let data = {
-        empresa: empresaId.map(id => ({ id })),
+        //empresa: empresaId.map(id => ({id})),
+        empresa: empresasPorAsignarList,
         ruc: ruc_,
         cedula: cedula_,
         nombre: nombre_,
@@ -32,6 +44,7 @@ function guardar() {
         domicilio: domicilio_,
         telefono: telefono_
     };
+
     console.log(data);
     return new Promise((resolve, reject) => {
         const request_options = {
@@ -47,6 +60,7 @@ function guardar() {
             .catch((error) => reject(`[error]: ${error}`));
     });
 }
+
 function cancelar_representante() {
     const empresaSelect = document.getElementById('empresaSelect');
     for (let i = 0; i < empresaSelect.options.length; i++) {
@@ -71,6 +85,7 @@ function guardar_representante() {
             alert('Error al ingresar.')
         })
 }
+
 function cargarEmpresas() {
     console.log('Comenzando carga de empresas...');
     return new Promise((resolve, reject) => {
