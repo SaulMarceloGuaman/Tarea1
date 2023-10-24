@@ -68,7 +68,6 @@ function cancelar_representante() {
     document.getElementById('telefono').value = '';
 }
 
-
 function guardar_representante() {
     guardar()
         .then(() => {
@@ -109,5 +108,3 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al cargar las empresas:', error);
         });
 });
-
-
