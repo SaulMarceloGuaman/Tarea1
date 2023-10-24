@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
     <title>Websockets</title>
@@ -30,12 +30,16 @@
     <input type="text" id="telefono" value="" placeholder="Ingrese el telefono"/>
 
     <label for="empresaSelect">Seleccione una empresa para asignar a este representante:</label>
-    <select id="empresaSelect"></select>
-
     <div class="nuevo">
-        <!--<button style="background-color: green; " onclick="window.location.href = 'nuevaempresa.html';">Asignar empresa</button>-->
+        <select id="empresaSelect"></select>
+        <pre>   </pre>
         <button style="background-color: green; " onclick="asignar_empresa()">Asignar Empresa</button>
     </div>
+
+    <div class="nuevo1">
+        <select id="empresaSelect1" multiple></select>
+    </div>
+
     <button style="background-color: green; " onclick="guardar_representante()">Guardar</button>
     <button style="background-color: red;" onclick="cancelar_representante()">Cancelar</button>
 </div>
