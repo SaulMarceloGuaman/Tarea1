@@ -2,7 +2,7 @@ var socket = io.connect('http://localhost:3000/', {
     forceNet: true
 });
 
-var empresasPorAsignarList = []
+var empresasPorAsignarList = [];
 
 socket.on('mensaje', (data) => console.log(data));
 
@@ -14,17 +14,10 @@ function asignar_empresa() {
     let empresaSelect = document.getElementById('empresaSelect');
     let selectedOptions = [...empresaSelect.selectedOptions];
     let empresaId = selectedOptions.map(option => option.value);
-    empresasPorAsignarList.push('id: '+empresaId)
-    empresasPorAsignarList.forEach(x => console.log("Empresa Seleccionada: " + x))
-    console.log('tamanio lista: '+empresasPorAsignarList.length)
+    empresasPorAsignarList.push(empresaId)
 }
 
 function guardar() {
-    let empresaSelect = document.getElementById('empresaSelect');
-    let selectedOptions = [...empresaSelect.selectedOptions]; // Obtener opciones seleccionadas
-
-    let empresaId = selectedOptions.map(option => option.value);
-    console.log('empresaId; '+empresaId)
     let ruc_ = document.getElementById('ruc').value;
     let cedula_ = document.getElementById('cedula').value;
     let nombre_ = document.getElementById('nombre').value;
@@ -34,8 +27,7 @@ function guardar() {
     let telefono_ = document.getElementById('telefono').value;
 
     let data = {
-        //empresa: empresaId.map(id => ({id})),
-        empresa: empresasPorAsignarList,
+        empresa: empresasPorAsignarList.map(item => ({id: String(item)})),
         ruc: ruc_,
         cedula: cedula_,
         nombre: nombre_,
@@ -46,6 +38,7 @@ function guardar() {
     };
 
     console.log(data);
+
     return new Promise((resolve, reject) => {
         const request_options = {
             method: 'POST',
