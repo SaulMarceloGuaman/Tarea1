@@ -12,21 +12,20 @@ socket.on('notificacion', (message) => {
 
 function asignar_empresa() {
     let empresaSelect = document.getElementById('empresaSelect');
+
     let selectedOptions = [...empresaSelect.selectedOptions];
+
     let empresaId = selectedOptions.map(option => option.value);
     empresasPorAsignarList.push(empresaId)
 
-    console.log(selectedOptions);
+    let nombreEmpresa=selectedOptions.map(option => option.text)
+    console.log(nombreEmpresa);
 
     let empresaSelect1 = document.getElementById('empresaSelect1');
-    empresaSelect1.appendChild(selectedOptions);
-
-    /*    empresasPorAsignarList.forEach(empresa => {
-            const option = document.createElement('option');
-            option.value = empresa._id;
-            option.textContent = empresa;
-            empresaSelect1.appendChild(option);
-        });*/
+    const option = document.createElement('option');
+    option.value = empresaId;
+    option.textContent = nombreEmpresa;
+    empresaSelect1.appendChild(option);
 }
 
 function guardar() {
