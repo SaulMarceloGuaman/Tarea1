@@ -15,6 +15,18 @@ function asignar_empresa() {
     let selectedOptions = [...empresaSelect.selectedOptions];
     let empresaId = selectedOptions.map(option => option.value);
     empresasPorAsignarList.push(empresaId)
+
+    console.log(selectedOptions);
+
+    let empresaSelect1 = document.getElementById('empresaSelect1');
+    empresaSelect1.appendChild(selectedOptions);
+
+    /*    empresasPorAsignarList.forEach(empresa => {
+            const option = document.createElement('option');
+            option.value = empresa._id;
+            option.textContent = empresa;
+            empresaSelect1.appendChild(option);
+        });*/
 }
 
 function guardar() {
@@ -108,3 +120,4 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al cargar las empresas:', error);
         });
 });
+
